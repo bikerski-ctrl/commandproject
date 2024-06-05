@@ -9,6 +9,7 @@ class Category(models.Model):
         return self.name
 
 class Photo(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to='photos/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
@@ -17,6 +18,7 @@ class Photo(models.Model):
         return self.title
 
 class Video(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100, default='1')
     image = models.FileField(upload_to='photos/', default='default_video.jpg')
     uploaded_at = models.DateTimeField(auto_now_add=True)

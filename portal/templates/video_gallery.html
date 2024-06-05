@@ -10,10 +10,7 @@
     {% for video in videos %}
         <div>
             <h2>{{ video.title }}</h2>
-            <video width="320" height="240" controls>
-                <source src="{{ video.video_file.url }}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <video src="{{ video.image.url }}" width="320" height="240" controls autoplay></video>
         </div>
     {% endfor %}
 </body>
