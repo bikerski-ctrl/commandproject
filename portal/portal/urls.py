@@ -40,5 +40,7 @@ urlpatterns = [
     path('polls/', include('voting.urls')),
 
     # Forum #
-    path('forum/', include('forum.urls'))
+    path('forum/', include('forum.urls')),
+    # Gallery #
+    path('', include('gallery_and_nes.urls'))
 ]
