@@ -13,7 +13,7 @@ class Forum_post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
     #media
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     theme = models.ForeignKey(Forum_Theme, on_delete=models.CASCADE, related_name='themes')
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -23,7 +23,7 @@ class Forum_post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(Forum_post, on_delete=models.CASCADE, related_name='comments')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     #media = models.FileField(upload_to='comments_media/',blank = True, null =True)

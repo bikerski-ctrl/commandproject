@@ -7,6 +7,7 @@
         <h4>{{ post.author }}</h4>
         <h1>{{ post.title }}</h1>
         <h2>{{ post.content }}</h2>
+        <a href="{% url 'forum:post_delete' post.id %}" class="btn btn-danger mb-4">Видалити</a>
         </div>
     </div>
 
@@ -15,7 +16,7 @@
     <div class="comments">
         <h2>Сообщения:</h2>
         {% for comment in post.comments.all %}
-            <div class="comment" style="border: 1px solid;">
+            <div class="comment p-3" style="border: 1px solid;">
                 <small>{{ comment.author.username }}</small> <small>{{ comment.created_at }}</small>
                 <p>{{ comment.content }}</p>
                 <form action="{% url 'forum:comment-like-toggle' comment.id %}" method="post">
@@ -23,6 +24,7 @@
                     <button type="submit" name="like_button" class="btn btn-sm {% if request.user in comment.likes.all %}btn-success{% else %}btn-outline-secondary{% endif %}">
                         лайк {{ comment.likes.count }}
                     </button>
+                    <a href="{% url 'forum:comment_delete' comment.id %}" class="btn btn-danger">Видалити</a>
                 </form>
             </div>
         {% empty %}

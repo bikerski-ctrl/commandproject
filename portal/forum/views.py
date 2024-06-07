@@ -45,7 +45,7 @@ class Post_Detail_View(LoginRequiredMixin, DetailView):
         comment_form = CommentForm(request.POST, request.FILES)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
-            comment.author = request.user
+            comment.creator = request.user
             comment.post = self.get_object()
             comment.save()
             return redirect('forum:post_detail', pk=comment.post.pk)
@@ -93,7 +93,7 @@ class PostAddView(LoginRequiredMixin, CreateView):
         return initial
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.creator = self.request.user
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -109,6 +109,15 @@ class PostDeleteView(LoginRequiredMixin, UserIsOwnerMixin, DeleteView):
     model = Forum_post
     template_name = "forum/post_delete.html"
     success_url = reverse_lazy("forum:themes_list")
+
+class CommentDeleteView(LoginRequiredMixin, UserIsOwnerMixin, DeleteView):
+    model = Comment
+    template_name = "forum/comment_delete.html"
+    success_url = reverse_lazy("forum:post_detail")
+
+    def get_object(self, queryset = None):
+        object = super().get_object(queryset)
+        print(object)
 
 class CommentAddView(LoginRequiredMixin, CreateView):
     model = Comment
