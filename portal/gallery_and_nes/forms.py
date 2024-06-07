@@ -4,4 +4,9 @@ from .models import *
 class PhotoForm(forms.ModelForm):
     class Meta:
         model = Photo
-        fields = ['user', 'title', 'image']  # Usually, 'uploaded_at' is auto_now_add and should not be included in the form.
+        fields = ['user', 'title', 'image']
+
+class VideoForm(forms.ModelForm):
+    class Meta:
+        model = Video
+        fields = ['user', 'title', 'image']

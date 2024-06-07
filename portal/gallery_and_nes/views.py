@@ -24,5 +24,23 @@ def add_photo(request):
 
 def DeletePhotoView(request, pk):
     photo = get_object_or_404(Photo, pk=pk)
-    photo.delete()
-    return redirect('photo_gallery')
+    if request.method == 'POST':
+        photo.delete()
+        return redirect('photo_gallery')
+
+def DeleteVideoView(request, pk):
+    video = get_object_or_404(Video, pk=pk)
+    if request.method == 'POST':
+        video.delete()
+        return redirect('video_gallery')
+
+def add_video(request):
+    if request.method == 'POST':
+        form = VideoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('video_gallery')
+    else:
+        form = VideoForm()
+    
+    return render(request, 'add_video.html', {'form': form})

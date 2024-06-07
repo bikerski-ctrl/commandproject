@@ -95,12 +95,61 @@
         .next:hover {
             color: #bbb;
         }
+        .nav {
+            margin-top: 10px;
+        }
+
+        .nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .nav ul li {
+            display: inline;
+        }
+
+        .nav ul li a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.3s;
+            position: relative;
+        }
+
+        .nav ul li a img {
+            width: 100px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .nav ul li a span {
+            display: block;
+            padding-top: 5px;
+        }
+
+        .nav ul li a:hover {
+            background: #007bff;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
-    <h1 class="text-center">Photo Gallery</h1>
+    <nav class="nav">
+        <ul>
+            <li><a href="{% url 'photo_gallery' %}">PHOTOS</a></li>
+            <li><a href="{% url 'video_gallery' %}">VIDEOS</a></li>
+            <li><a href="{% url 'adding_photo' %}" class="btn btn-primary mb-4">Add Photo</a></li>
+            <li><a href="{% url 'adding_video' %}" class="btn btn-primary mb-4">Add Video</a></li>
+        </ul>
+    </nav>
     <div class="container mt-5 text-center">
-        <a href="{% url 'adding_photo' %}" class="btn btn-primary mb-4">Add Photo</a>
         <div class="row gallery-container">
             {% for photo in photos %}
                 <div class="col-md-4 gallery-item">
