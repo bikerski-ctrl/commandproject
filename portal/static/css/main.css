@@ -23,3 +23,7 @@
 .cormorant-infant {
     font-family: 'Cormorant Infant';
 }
+
+.slider-image{
+    max-height: 400px;
+}
